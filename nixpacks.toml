@@ -1,2 +1,20 @@
 [phases.setup]
-apt_pkgs = ["libgobject-2.0-0", "libglib2.0-0", "libcairo2", "libpango-1.0-0", "libpangocairo-1.0-0", "libffi-dev", "libgdk-pixbuf2.0-0"]
+apt_pkgs = [
+    "libgobject-2.0-0", 
+    "libglib2.0-0", 
+    "libcairo2", 
+    "libpango-1.0-0", 
+    "libpangocairo-1.0-0", 
+    "libffi-dev", 
+    "libgdk-pixbuf2.0-0",
+    "fonts-liberation",
+    "libfontconfig1",
+    "libjpeg62-turbo",
+    "libx11-6",
+    "libxext6",
+    "libxrender1",
+    "libxcb1",
+    "libx11-xcb1",
+    "libxcb-render0",
+    "libxcb-shm0"
+]

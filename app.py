@@ -2,7 +2,7 @@ from flask import Flask, request, send_file, jsonify
 from flask_cors import CORS
 import openai
 import pdfplumber
-from weasyprint import HTML
+import fitz  # PyMuPDF
 import os
 
 app = Flask(__name__)
@@ -21,11 +21,8 @@ def upload_pdf():
         # Extract text from the PDF
         text_content = extract_text_from_pdf("uploaded.pdf")
 
-        # Add alt text or other accessibility features
-        accessible_html = add_accessibility_features(text_content)
-
-        # Convert HTML back to PDF
-        HTML(string=accessible_html).write_pdf("accessible_output.pdf")
+        # Generate an accessible PDF with the extracted text
+        generate_accessible_pdf(text_content, "accessible_output.pdf")
 
         return send_file("accessible_output.pdf", as_attachment=True)
 
@@ -39,10 +36,13 @@ def extract_text_from_pdf(pdf_path):
             text += page.extract_text() + "\n"
     return text
 
-def add_accessibility_features(text):
-    # Here, replace with OpenAI's API or other logic to add alt text, structure, etc.
-    # This is just an example that returns the text wrapped in HTML structure
-    return f"<html><body><h1>Accessible Document</h1><p>{text}</p></body></html>"
+def generate_accessible_pdf(text, output_path):
+    # Create a new PDF with the extracted text
+    pdf_document = fitz.open()  # Create a new PDF
+    page = pdf_document.new_page()  # Add a new page
+    page.insert_text((72, 72), text)  # Insert the text at position (72, 72)
+    pdf_document.save(output_path)
+    pdf_document.close()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)

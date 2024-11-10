@@ -1,6 +1,0 @@
-Flask
-Flask-Cors
-openai
-pdfplumber
-weasyprint
-python-dotenv

@@ -2,6 +2,6 @@ Flask
 Flask-Cors
 openai
 pdfplumber
-weasyprint
+pymupdf
 python-dotenv
 gunicorn

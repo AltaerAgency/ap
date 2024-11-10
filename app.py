@@ -40,4 +40,9 @@ def extract_text_from_pdf(pdf_path):
     return text
 
 def add_accessibility_features(text):
-    # Here, replace with OpenAI's API or other logic to add alt text,
+    # Here, replace with OpenAI's API or other logic to add alt text, structure, etc.
+    # This is just an example that returns the text wrapped in HTML structure
+    return f"<html><body><h1>Accessible Document</h1><p>{text}</p></body></html>"
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
